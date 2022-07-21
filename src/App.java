@@ -1,5 +1,7 @@
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URI;
+import java.net.URL;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -18,9 +20,9 @@ public class App {
 
     public static void main(String [] args) throws Exception {
         showTopMovies();
-        showPopularMovies();
-        showTopSeries();
-        showPopularSeries();
+//       showPopularMovies();
+//      showTopSeries();
+//        showPopularSeries();
     }
 
     private static void showTopMovies() throws IOException, InterruptedException {
@@ -47,7 +49,7 @@ public class App {
         jsonParserAPI(response);
     }
 
-    private static void jsonParserAPI(String response) {
+    private static void jsonParserAPI(String response) throws IOException {
         JsonParser parser = new JsonParser();
         List<Map<String, String>> apiList = parser.parse(response);
 
@@ -55,11 +57,29 @@ public class App {
             System.out.println(BOLD + TEXT_WHITE + "Title: " + TEXT_CIANO + item.get("title"));
             System.out.println(BOLD +  TEXT_WHITE + "Poster: " + TEXT_BLUE + item.get("image"));
             System.out.println(BOLD +  TEXT_WHITE + "Rating: " + TEXT_YELLOW + item.get("imDbRating"));
+
+            generateSticker(item);
+        }
+    }
+
+    private static void generateSticker(Map<String, String> item) throws IOException {
+        StickerGenerator generator = new StickerGenerator();
+
+        String image = item.get("image");
+        String imageUrl = image.replace("@._V1_UX128_CR0,1,128,176_AL_", "");
+        String movieName = item.get("title");
+        String fileName = movieName.replace(":", "-")  + ".png";
+
+        try {
+            InputStream inputStream = new URL(imageUrl).openStream();
+            generator.create(inputStream, fileName);
+        } catch (java.io.FileNotFoundException e) {
+            System.out.println("Image not found.");
         }
     }
 
     private static String getMovies() throws IOException, InterruptedException {
-        String url = "https://alura-filmes.herokuapp.com/conteudos";
+       String url = "https://alura-imdb-api.herokuapp.com/movies";
         return getResponse(url);
     }
 
