@@ -1,6 +1,6 @@
 <div align="center">
   <h1>Projeto Alura Stickers</h1>
-  <p>Projeto criado durante a Imersão Java da Alura.🤿 </br>
+  <p>Projeto criado durante a Imersão Java da Alura.🤿 ☕ <br>
   Desenvolvido com 💙 por Gabriela Garcia.</p>
 </div>
 
@@ -9,11 +9,14 @@
 - GET dos filmes mais populares
 - GET das melhores séries
 - GET das séries mais populares
+- Gerador de figurinhas
 
 ## 📒 Conteúdos da Imersão 
-**Aula 1**: Consumir a API do IMDb e exibir os filmes mais populares, destacando seus pôsteres e visualizando sua classificação sem usar nenhuma biblioteca externa.
+**Aula 1**: consumir a API do IMDb e exibir os filmes mais populares, destacando os seus pôsteres e visualizando a sua classificação sem usar nenhuma biblioteca externa.
 
-**Aula 2**: Criar um gerador de figurinhas explorando bibliotecas nativas do Java como java.awt, javax.imageio e java.io.
+**Aula 2**: criar um gerador de figurinhas explorando bibliotecas nativas do Java como java.awt, javax.imageio e java.io.
+
+**Aula 3**: melhorar o código com as refatorações necessárias para torná-lo mais flexível e fácil de entender.
 
 ## 🎯 Desafios cumpridos
   - [X] Consumir o endpoint de filmes mais populares, o endpoint que retorna as melhores séries e o que retorna as séries mais populares.
