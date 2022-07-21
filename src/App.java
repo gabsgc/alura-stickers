@@ -1,108 +1,36 @@
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
 import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.util.List;
-import java.util.Map;
 
 public class App {
-    public static final String BOLD = "\u001b[1m";
-    public static final String ITALIC = "\u001b[3m";
-    public static final String TEXT_GREEN = "\u001b[32m";
-    public static final String TEXT_YELLOW = "\u001b[33m";
-    public static final String TEXT_BLUE = "\u001b[34m";
-    public static final String TEXT_MAGENTA = "\u001b[35m";
-    public static final String TEXT_CIANO = "\u001b[36m";
-    public static final String TEXT_WHITE = "\u001b[37m";
 
     public static void main(String [] args) throws Exception {
-        showTopMovies();
-//       showPopularMovies();
-//      showTopSeries();
-//        showPopularSeries();
+        String url = "https://api.mocki.io/v2/549a5d8b/MostPopularMovies";
+        ContentExtractor extractor = new ImdbContentExtractor();
+
+        HttpApiClient http = new HttpApiClient();
+        String json = http.getData(url);
+
+        List<Content> contents = extractor.extractsContent(json);
+
+        generateSticker(contents);
     }
 
-    private static void showTopMovies() throws IOException, InterruptedException {
-        System.out.println(ITALIC + TEXT_MAGENTA + "Top 250 Movies - IMDb");
-        String movies = getMovies();
-        jsonParserAPI(movies);
-    }
-
-    private static void showPopularMovies() throws IOException, InterruptedException {
-        System.out.println(ITALIC + TEXT_GREEN + "Most Popular Movies - IMDb");
-        String response = getPopularMovies();
-        jsonParserAPI(response);
-    }
-
-    private static void showPopularSeries() throws IOException, InterruptedException {
-        System.out.println(ITALIC + TEXT_GREEN + "Most Popular Series - IMDb");
-        String response = getPopularSeries();
-        jsonParserAPI(response);
-    }
-
-    private static void showTopSeries() throws IOException, InterruptedException {
-        System.out.println(ITALIC + TEXT_MAGENTA + "Most Top Series - IMDb");
-        String response = getSeries();
-        jsonParserAPI(response);
-    }
-
-    private static void jsonParserAPI(String response) throws IOException {
-        JsonParser parser = new JsonParser();
-        List<Map<String, String>> apiList = parser.parse(response);
-
-        for (Map<String, String> item : apiList) {
-            System.out.println(BOLD + TEXT_WHITE + "Title: " + TEXT_CIANO + item.get("title"));
-            System.out.println(BOLD +  TEXT_WHITE + "Poster: " + TEXT_BLUE + item.get("image"));
-            System.out.println(BOLD +  TEXT_WHITE + "Rating: " + TEXT_YELLOW + item.get("imDbRating"));
-
-            generateSticker(item);
-        }
-    }
-
-    private static void generateSticker(Map<String, String> item) throws IOException {
+    private static void generateSticker(List<Content> contents) throws IOException {
         StickerGenerator generator = new StickerGenerator();
 
-        String image = item.get("image");
-        String imageUrl = image.replace("@._V1_UX128_CR0,1,128,176_AL_", "");
-        String movieName = item.get("title");
-        String fileName = movieName.replace(":", "-")  + ".png";
+        for (Content content : contents) {
+            String movieName = content.getTitle();
+            String fileName = movieName.replace(":", "-") + ".png";
 
-        try {
-            InputStream inputStream = new URL(imageUrl).openStream();
-            generator.create(inputStream, fileName);
-        } catch (java.io.FileNotFoundException e) {
-            System.out.println("Image not found.");
+            try {
+                InputStream inputStream = new URL(content.getImageUrl()).openStream();
+                generator.create(inputStream, fileName);
+                System.out.println(content.getTitle());
+            } catch (java.io.FileNotFoundException e) {
+                System.out.println("Image not found.");
+            }
         }
-    }
-
-    private static String getMovies() throws IOException, InterruptedException {
-       String url = "https://alura-imdb-api.herokuapp.com/movies";
-        return getResponse(url);
-    }
-
-    private static String getPopularMovies() throws IOException, InterruptedException {
-        String url = "https://api.mocki.io/v2/549a5d8b/MostPopularMovies";
-        return getResponse(url);
-    }
-
-    private static String getSeries() throws IOException, InterruptedException {
-        String url = "https://api.mocki.io/v2/549a5d8b/Top250TVs";
-        return getResponse(url);
-    }
-
-    private static String getPopularSeries() throws IOException, InterruptedException {
-        String url = "https://api.mocki.io/v2/549a5d8b/MostPopularTVs";
-        return getResponse(url);
-    }
-
-    private static String getResponse(String url) throws IOException, InterruptedException {
-        URI uri = URI.create(url);
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder(uri).GET().build();
-        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
-        return response.body();
     }
 }
