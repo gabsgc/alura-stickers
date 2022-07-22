@@ -26,6 +26,8 @@
   - [X] Colocar contorno (outline) no texto da imagem.
   - [X] Tratar as imagens retornadas pela API do IMDB para pegar uma imagem maior ao invés dos thumbnails.
   - [X] Criar diretório de saída das imagens, se ainda não existir.
+  - [X] Transformar a classe que representa os conteúdos em um Record, disponível a partir do Java 16.
+  - [X] Criar uma Enum que une, como configurações, a URL da API e o extrator utilizado.
 
 ## 📸 Screenshots
 ####  📌 Saída de dados com texto colorido e negrito
