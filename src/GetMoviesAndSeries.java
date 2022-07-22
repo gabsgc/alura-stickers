@@ -35,33 +35,29 @@ public class GetMoviesAndSeries {
         List<Content> contents = extractor.extractsContent(getContent);
 
         for (Content content : contents) {
-            System.out.println(BOLD + TEXT_WHITE + "Title: " + TEXT_CIANO + content.getTitle());
-            System.out.println(BOLD + TEXT_WHITE + "Poster: " + TEXT_BLUE + content.getImageUrl());
+            System.out.println(BOLD + TEXT_WHITE + "Title: " + TEXT_CIANO + content.title());
+            System.out.println(BOLD + TEXT_WHITE + "Poster: " + TEXT_BLUE + content.imageUrl());
         }
     }
     private static String getMovies() {
-        String url = "https://alura-imdb-api.herokuapp.com/movies";
         HttpApiClient http = new HttpApiClient();
-        return http.getData(url);
+        return http.getData(ApiUrl.IMDB_MOVIES.getUrl());
     }
 
     private static String getPopularMovies()  {
-        String url = "https://api.mocki.io/v2/549a5d8b/MostPopularMovies";
         HttpApiClient http = new HttpApiClient();
-        return http.getData(url);
+        return http.getData(ApiUrl.IMDB_TOP_MOVIES.getUrl());
     }
 
 
     private static String getSeries() {
-        String url = "https://api.mocki.io/v2/549a5d8b/Top250TVs";
         HttpApiClient http = new HttpApiClient();
-        return http.getData(url);
+        return http.getData(ApiUrl.IMDB_TOP_SERIES.getUrl());
     }
 
     private static String getPopularSeries()  {
-        String url = "https://api.mocki.io/v2/549a5d8b/MostPopularTVs";
         HttpApiClient http = new HttpApiClient();
-        return http.getData(url);
+        return http.getData(ApiUrl.IMDB_SERIES.getUrl());
     }
 
     public static void main(String[] args) {
