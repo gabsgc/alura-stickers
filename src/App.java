@@ -6,7 +6,7 @@ import java.util.List;
 public class App {
 
     public static void main(String [] args) throws Exception {
-        String url = String.valueOf(ApiUrl.IMDB_SERIES.getUrl());
+        String url = String.valueOf(API_URL.IMDB_SERIES.getUrl());
         ContentExtractor extractor = new ImdbContentExtractor();
 
         HttpApiClient http = new HttpApiClient();
@@ -21,8 +21,8 @@ public class App {
         StickerGenerator generator = new StickerGenerator();
 
         for (Content content : contents) {
-            String movieName = content.title();
-            String fileName = movieName.replace(":", "-") + ".png";
+            String title = content.title();
+            String fileName = title.replace(":", "-") + ".png";
 
             try {
                 InputStream inputStream = new URL(content.imageUrl()).openStream();

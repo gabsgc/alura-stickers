@@ -41,23 +41,23 @@ public class GetMoviesAndSeries {
     }
     private static String getMovies() {
         HttpApiClient http = new HttpApiClient();
-        return http.getData(ApiUrl.IMDB_MOVIES.getUrl());
+        return http.getData(API_URL.IMDB_MOVIES.getUrl());
     }
 
     private static String getPopularMovies()  {
         HttpApiClient http = new HttpApiClient();
-        return http.getData(ApiUrl.IMDB_TOP_MOVIES.getUrl());
+        return http.getData(API_URL.IMDB_TOP_MOVIES.getUrl());
     }
 
 
     private static String getSeries() {
         HttpApiClient http = new HttpApiClient();
-        return http.getData(ApiUrl.IMDB_TOP_SERIES.getUrl());
+        return http.getData(API_URL.IMDB_TOP_SERIES.getUrl());
     }
 
     private static String getPopularSeries()  {
         HttpApiClient http = new HttpApiClient();
-        return http.getData(ApiUrl.IMDB_SERIES.getUrl());
+        return http.getData(API_URL.IMDB_SERIES.getUrl());
     }
 
     public static void main(String[] args) {
