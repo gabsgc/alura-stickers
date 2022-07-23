@@ -18,6 +18,8 @@
 
 **Aula 3**: melhorar o código com as refatorações necessárias para torná-lo mais flexível e fácil de entender.
 
+**Aulas 4 e 5**: [Criar um API Rest e fazer o deploy](https://github.com/gabsgc/languages-api)
+
 ## 🎯 Desafios cumpridos
   - [X] Consumir o endpoint de filmes mais populares, o endpoint que retorna as melhores séries e o que retorna as séries mais populares.
   - [X] Estilizar a saída de dados alterando a cor do texto e usando negrito.
