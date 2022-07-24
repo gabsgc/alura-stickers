@@ -8,7 +8,7 @@ import java.io.InputStream;
 
 public class StickerGenerator {
 
-    public void create(InputStream inputStream, String fileName) throws IOException {
+    public void create(InputStream inputStream, String fileName, String word, int color) throws IOException {
         BufferedImage originalImage = ImageIO.read(inputStream);
 
         int stickerWidth = 400;
@@ -20,16 +20,22 @@ public class StickerGenerator {
         graphics.drawImage(originalImage, 0, 0, stickerWidth, resizedHeight, null);
 
         var font = new Font("Comic Sans MS", Font.BOLD, 50);
-        String phrase = "TOPZERA";
 
-        TextLayout textLayout = new TextLayout(phrase, font, graphics.getFontRenderContext());
+        TextLayout textLayout = new TextLayout(word, font, graphics.getFontRenderContext());
         Shape shape = textLayout.getOutline(null);
 
         graphics.setFont(font);
-        graphics.setColor(Color.ORANGE);
-        FontMetrics phraseSize = graphics.getFontMetrics(font);
 
-        float x = ((float)(newImage.getWidth() / 2) - ((float) phraseSize.stringWidth(phrase)) / 2);
+        switch (color) {
+            case 1 -> graphics.setColor(Color.blue);
+            case 2 -> graphics.setColor(Color.orange);
+            case 3 -> graphics.setColor(Color.pink);
+            case 4 -> graphics.setColor(Color.red);
+            case 5 -> graphics.setColor(Color.green);
+        }
+        FontMetrics wordSize = graphics.getFontMetrics(font);
+
+        float x = ((float)(newImage.getWidth() / 2) - ((float) wordSize.stringWidth(word)) / 2);
         int y = newImage.getHeight() - 10;
 
         graphics.translate(x, y);
