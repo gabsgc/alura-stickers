@@ -10,6 +10,7 @@
 - GET das melhores séries
 - GET das séries mais populares
 - Gerador de figurinhas
+- GET de [linguagens de programação](https://github.com/gabsgc/languages-api)
 
 ## 📒 Conteúdos da Imersão 
 **Aula 1**: consumir a API do IMDb e exibir os filmes mais populares, destacando os seus pôsteres e visualizando a sua classificação sem usar nenhuma biblioteca externa.
@@ -18,7 +19,7 @@
 
 **Aula 3**: melhorar o código com as refatorações necessárias para torná-lo mais flexível e fácil de entender.
 
-**Aulas 4 e 5**: [Criar uma API Rest e fazer o deploy](https://github.com/gabsgc/languages-api)
+**Aulas 4 e 5**: [Criar uma API Rest e fazer o deploy](https://github.com/gabsgc/languages-api) e gerar figurinhas a partir do conteúdo dessa nossa API.
 
 ## 🎯 Desafios cumpridos
   - [X] Consumir o endpoint de filmes mais populares, o endpoint que retorna as melhores séries e o que retorna as séries mais populares.
