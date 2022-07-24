@@ -9,7 +9,10 @@
 - GET dos filmes mais populares
 - GET das melhores séries
 - GET das séries mais populares
-- Gerador de figurinhas
+- Gerador de figurinhas personalizadas
+  - Escolher de qual API deseja gerar as figurinhas
+  - Informar texto da figurinha
+  - Escolher cor do texto
 - GET de [linguagens de programação](https://github.com/gabsgc/languages-api)
 
 ## 📒 Conteúdos da Imersão 
