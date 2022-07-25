@@ -5,14 +5,17 @@ import java.util.List;
 import java.util.Scanner;
 
 public class App {
+    public static final String BOLD = "\u001b[1m";
+    public static final String TEXT_BLUE = "\u001b[34m";
+    public static final String TEXT_WHITE = "\u001b[37m";
 
     public static void main(String [] args) throws Exception {
         boolean menu = true;
 
         do {
             Scanner scanner = new Scanner(System.in);
-            System.out.println("Bem-vindo(a) ao Alura Stickers");
-            System.out.println("Escolha a opção desejada: ");
+            System.out.println(BOLD + TEXT_BLUE +  "Bem-vindo(a) ao Alura Stickers" + " 💙");
+            System.out.println(TEXT_WHITE + "Escolha a opção desejada: ");
             System.out.println("1 - Criar stickers de TOP Filmes");
             System.out.println("2 - Criar stickers de TOP Séries");
             System.out.println("3 - Criar stickers de Filmes mais populares");
@@ -57,12 +60,12 @@ public class App {
                 callStickerGenerator(contents, word, color);
             }
             else if(selected == 6) {
-                System.out.println("Encerrando o Alura Stickers...");
+                System.out.println("Encerrando o Alura Stickers..." + " 👋");
                 scanner.close();
                 menu = false;
             }
             else {
-                System.out.println("Por favor, escolha uma opção entre 1 e 5.");
+                System.out.println("Por favor, escolha uma opção entre 1 e 6.");
             }
 
         } while (menu);
