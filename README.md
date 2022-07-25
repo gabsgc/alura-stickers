@@ -15,6 +15,9 @@
   - Escolher cor do texto
 - GET de [linguagens de programação](https://github.com/gabsgc/languages-api)
 
+## 🛠️ Tecnologias utilizadas
+- Java 18
+
 ## 📒 Conteúdos da Imersão 
 **Aula 1**: consumir a API do IMDb e exibir os filmes mais populares, destacando os seus pôsteres e visualizando a sua classificação sem usar nenhuma biblioteca externa.
 
